@@ -12,12 +12,12 @@ app.client = (function(){
 				this.width = 320;
 				this.height = 568;
 				$('body').addClass('pc');
+
+				//this.renderClient();
 			}else{
 				this.width = window.innerWidth;
 				this.height = window.innerHeight;
 			}
-this.width = window.innerWidth;
-				this.height = window.innerHeight;
 			//this.renderClient();	
 		},
 

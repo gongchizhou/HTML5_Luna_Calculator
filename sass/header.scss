@@ -1,5 +1,5 @@
 .header{
-	height: 568 - 5*$list-height;
+	height: 100vh - 5*$list-height;
 	&.move{
 		transform: translateY(120px);
 		transition: all 0.3s ease-in;
