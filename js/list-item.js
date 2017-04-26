@@ -33,7 +33,7 @@ app.list_item = (function(){
 		},
 
 		clearDisabled: function(){
-			this.el.find('.checkbox').removeAttr('disabled');
+			$('.checkbox').removeAttr('disabled');
 		},
 
 		checkInit: function(){
