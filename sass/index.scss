@@ -20,6 +20,9 @@ $list-height:80px;
 html,body{
 	height:100%;
 }
+html {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
 body{
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	&.pc{
