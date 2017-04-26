@@ -169,7 +169,7 @@ app.calculator = (function(){
 
 		ptClick: function(){
 			var lastChar = this.currentView.charAt(this.currentView.length-1);
-			if(this.ptExist || lastChar == "÷" || lastChar == "%"){
+			if(this.ptExist || lastChar == "÷" || lastChar == "%" || (this.hasResult && this.input == "")){
 				this.shake();
 				return;
 			}
@@ -287,7 +287,8 @@ app.calculator = (function(){
 				if(this.hasResult && this.input.text() == "" && isLastNum){
 					var view = $('.cal-input p span:nth-last-child(2)').text();
 					this.deleteResultUI();
-					
+					app.list_item.setCheckBoxShow(true);
+
 					var index = this.resultView.lastIndexOf(view);
 					this.resultView = this.resultView.substring(0,index);
 					//this.currentView = this.resultView.charAt(this.resultView.length-1);
@@ -297,13 +298,19 @@ app.calculator = (function(){
 					this.setNum(this.resultView);
 				}else{
 					var lastChar = this.currentView.charAt(this.currentView.length - 1);
+					var preChar = this.currentView.charAt(this.currentView.length - 2);
 					var isLastNum = this.isLastNum(this.currentView.toString());
 					if(lastChar == "."){
 						this.ptExist = false;
 					}
+
+					if(this.isLastOps(preChar)){
+						app.list_item.setCheckBoxShow(true);
+					}
 					
 					if(this.isLastOps(lastChar)){
 						this.ptExist = true;
+						app.list_item.setCheckBoxShow(false);
 					}
 
 					this.resultView = this.resultView.slice(0,-1);
