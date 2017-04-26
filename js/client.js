@@ -16,8 +16,9 @@ app.client = (function(){
 				this.width = window.innerWidth;
 				this.height = window.innerHeight;
 			}
-
-			this.renderClient();	
+this.width = window.innerWidth;
+				this.height = window.innerHeight;
+			//this.renderClient();	
 		},
 
 		renderClient: function(){
