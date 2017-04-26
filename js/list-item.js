@@ -5,7 +5,7 @@ app.list_item = (function(){
 							<div class="res">'+item.value+'</div>\
 							<span class=" '+(item.title?'':'none')+' ">'+'('+item.title+')'+'</span>\
 							<label class="check">\
-								<input type="checkbox" class="checkbox">\
+								<input type="checkbox" class="checkbox" checked="false">\
 								<div></div>\
 							</label>\
 						</li>');
@@ -24,7 +24,7 @@ app.list_item = (function(){
 			if(args){
 				$('.check').show();
 			}else{
-				$('.checkbox:not(:checked)').parent().hide();
+				$('.checkbox[checked="false"]').parent().hide();
 			}
 		},
 
@@ -33,13 +33,15 @@ app.list_item = (function(){
 		},
 
 		clearDisabled: function(){
-			$('.checkbox').removeAttr('disabled');
+			$('.checkbox[checked="false"]').removeAttr('disabled');
 		},
 
 		checkInit: function(){
-			this.clearDisabled();
-			//$('.checkbox:checked').trigger('change');
+			//this.clearDisabled();
+			$('.checkbox').removeAttr('disabled');
+			$('.checkbox').attr('checked',false);
 			$('.checkbox + div').css('backgroundColor','transparent');
+			this.setCheckBoxShow(false);
 		},
 
 		initEvent: function(item){
@@ -53,11 +55,12 @@ app.list_item = (function(){
 					return;
 				}
 
-				if($(this).is(':checked')){
+				if($(this).attr('checked') == 'false'){
 					var checkbox = $(this).parent().parent().siblings().find('.checkbox');
 					app.list_item.setDisabled(checkbox);
+					$(this).attr('checked',true);
 
-					$('.checkbox:not(:checked)').parent().hide();
+					$('.checkbox[checked="false"]').parent().hide();
 
 					ac.color = ac.setBg();
 					$(this).next().css('backgroundColor',ac.color);
@@ -70,20 +73,20 @@ app.list_item = (function(){
 				    
 					ac.resultView = ac.resultView + ac.currentView;
 				    ac.appendResultUI(ac.currentView);
-				    ac.currentView = ac.preView = "";
+				    ac.currentView = "";
 				    ac.hasResult = true;
 				}else{
 					app.list_item.clearDisabled();
+					$(this).attr('checked',false);
 					
 					$('.check').show();
-
 					$(this).next().css('backgroundColor','transparent');
 
 					ac.deleteResultUI();
 
 					var index = ac.resultView.lastIndexOf(ac.currentView);
 					ac.resultView = ac.resultView.substring(0,index);
-					ac.preView = ac.input.text();
+					ac.currentView = ac.input.text();
 
 					if(ac.resultView == ""){
 						ac.clearView();

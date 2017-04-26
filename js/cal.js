@@ -161,7 +161,7 @@ app.calculator = (function(){
 				this.ptExist = false;
 			}
 			app.list_item.setCheckBoxShow(true);
-			$('.checkbox').removeAttr('disabled');
+			app.list_item.clearDisabled();
 
 			this.setView(this.currentView);
 			this.setNum(this.resultView);	

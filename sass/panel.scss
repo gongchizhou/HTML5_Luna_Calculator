@@ -79,7 +79,10 @@
 				}
 				.check{
 					float: right;
-					margin-top: $list-height*2/6-8;
+					transform: translateY($list-height*2/6);
+					-webkit-transform: translateY($list-height*2/6);
+					-moz-transform: translateY($list-height*2/6);
+					margin-top: -9px;
 					line-height: 1;
 					input{
 						display: none;
@@ -91,7 +94,7 @@
 						box-shadow: 0 0 0 1px white inset;
 						border-radius: 50%;
 					}
-					input:checked + div{
+					input[checked="true"] + div{
 						box-shadow: none;
 					}
 				}
