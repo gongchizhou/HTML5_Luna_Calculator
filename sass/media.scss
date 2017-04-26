@@ -1,0 +1,95 @@
+@mixin media($height,$clientHeight,$clientWidth){
+	@media screen and(max-width:$clientWidth){
+	$list-height:$height;
+		.header{
+			height: $clientHeight - 5*$list-height;
+		}
+		.panel{
+			.controls{
+				&.down{
+					margin-bottom: -4*$list-height;
+				}
+				.row{
+					div{
+						height: $list-height;
+						line-height: $list-height;
+					}
+				}
+			}
+			.list-scroll{
+				height: 5*$list-height;
+				&.pa-bottom{
+					padding-bottom: $list-height;
+				}
+				.list{
+					li{
+						line-height: $list-height*2/3;
+					}
+				}
+			}
+		}	
+	}
+}
+@include media($height:104px,$clientHeight:736px,$clientWidth:414px);
+@include media($height:94px,$clientHeight:667px,$clientWidth:375px);
+@include media($height:80px,$clientHeight:568px,$clientWidth:320px);
+/*@media screen and (min-width:375px){
+	$list-height:94px;
+	.header{
+		height: 667-5*$list-height;
+	}
+	.panel{
+		.controls{
+			&.down{
+				margin-bottom: -4*$list-height;
+			}
+			.row{
+				div{
+					height: $list-height;
+					line-height: $list-height;
+				}
+			}
+		}
+		.list-scroll{
+			height: 5*$list-height;
+			&.pa-bottom{
+				padding-bottom: $list-height;
+			}
+			.list{
+				li{
+					line-height: $list-height*2/3;
+				}
+			}
+		}
+	}
+}
+@media screen and (min-width:414px){
+	$list-height:104px;
+	.header{
+		height: 736-5*$list-height;;
+	}
+	.panel{
+		.controls{
+			&.down{
+				margin-bottom: -4*$list-height;
+			}
+			.row{
+				div{
+					height: $list-height;
+					line-height: $list-height;
+				}
+			}
+		}
+		.list-scroll{
+			height: 5*$list-height;
+			&.pa-bottom{
+				padding-bottom: $list-height;
+			}
+			.list{
+				li{
+					line-height: $list-height*2/3;
+				}
+			}
+		}
+	}
+}*/

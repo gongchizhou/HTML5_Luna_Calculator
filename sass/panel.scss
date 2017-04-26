@@ -1,0 +1,101 @@
+.panel{
+	position: relative;
+	overflow: hidden;
+	z-index: 100;
+	.controls{
+		width: 100%;
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		z-index: 100;
+		&.down{
+			margin-bottom: -4*$list-height;
+			@extend .trans;
+		}
+		&.up{
+			margin-bottom: 0;
+			@extend .trans;
+		}
+		&.move{
+			transform: translateY(20px);
+			transition: all 0.3s ease-in;
+			-webkit-transition: all 0.3s ease-in;
+			-moz-transition: all 0.3s ease-in;
+		}
+		.row{
+			overflow: hidden;
+			div{
+				float: left;
+				width: 25%;
+				height: $list-height;
+				line-height: $list-height;
+				cursor: pointer;
+				@include font(24px);
+			}
+			&:nth-child(1){
+				background-color: #00091a;
+			}
+			&:nth-child(2){
+				background-color: #021325;
+			}
+			&:nth-child(3){
+				background-color: #071c31;
+			}
+			&:nth-child(4){
+				background-color: #0d2740;
+			}
+			&:nth-child(5){
+				background-color: #163351;
+			}
+		}
+	}
+	.list-scroll{
+		height: 5*$list-height;
+		margin-right: -22px;
+		overflow-y: scroll;
+		-webkit-overflow-scrolling: touch;	
+	    box-sizing: border-box;
+		&.pa-bottom{
+			padding-bottom: $list-height;
+		}
+		.lists{
+			margin-right: 22px;
+			background-color: black;
+			li{
+				position: relative;
+				line-height: $list-height*2/3;
+				padding: 0 20px;
+				overflow: hidden;
+				border-bottom: 1px solid rgba(255,255,255,0.1);
+				.res{
+					float: left;
+					@include font();
+					text-align: left;
+					& + span{
+						@include font();
+						padding-left:6px;
+						opacity: 0.6;
+					}
+				}
+				.check{
+					float: right;
+					margin-top: $list-height*2/6-8;
+					line-height: 1;
+					input{
+						display: none;
+					}
+					input + div{
+						display: inline-block;
+						width: 18px;
+						height: 18px;
+						box-shadow: 0 0 0 1px white inset;
+						border-radius: 50%;
+					}
+					input:checked + div{
+						box-shadow: none;
+					}
+				}
+			}
+		}
+	}
+}
