@@ -21,10 +21,10 @@ app.touch = (function(){
 		item:$('.item'),
 		scroll:$('.list-scroll'),
 		getPos: function(e){
-			if(e.touches && touches[0]){
+			if(e.touches && e.touches[0]){
 				return{
-					x: touches[0].clientX,
-					y: touched[0].clientY
+					x: e.touches[0].clientX,
+					y: e.touches[0].clientY
 				}
 			}else{
 				return{
@@ -36,7 +36,9 @@ app.touch = (function(){
 		},
 
 		getDist: function(p1,p2){
-			return Math.sqrt((p1.x-p2.x)*(p1.x-p2.x) + (p1.y-p2.y)*(p1.y-p2.y));
+			if(p1 && p2){
+				return Math.sqrt((p1.x-p2.x)*(p1.x-p2.x) + (p1.y-p2.y)*(p1.y-p2.y));
+			}
 		},
 
 		getAngle: function(p1,p2){
@@ -46,7 +48,6 @@ app.touch = (function(){
 		},
 
 		startEvt:function(e){
-			//e.preventDefault(); 
 			if(!e.touches || e.touches.length == 1){
 				start_pt = app.touch.getPos(e);
 				startTime = Date.now();
@@ -54,35 +55,37 @@ app.touch = (function(){
 		},
 
 		moveEvt: function(e){
+			end_pt = app.touch.getPos(e);
 			e.preventDefault(); 
-			if(!e.touches) return;	
+			//if(!e.touches) return;	
 		},
 
 		endEvt: function(e){
-			if(!e.touches || e.touches.length == 1){
-				end_pt = app.touch.getPos(e);
-				endTime = Date.now();
-				var dist = app.touch.getDist(start_pt,end_pt);
-				if(dist > swipeHold && endTime - startTime < swipeTime){
-					var angle = app.touch.getAngle(start_pt,end_pt);
-					switch(this){
-						case app.touch.ctr[0]: 
-							app.touch.ctrCheck(angle);
-							break;
-						case app.touch.item[0]:  
-							app.touch.listItemCheck(dist,angle);
-							break;
-					}	
-				}
+			endTime = Date.now();
+			var dist = app.touch.getDist(start_pt,end_pt);
+
+			if(dist > swipeHold && endTime - startTime < swipeTime){
+
+				var angle = app.touch.getAngle(start_pt,end_pt);
+				switch(this){
+					case app.touch.ctr[0]: 
+						app.touch.ctrCheck(angle);
+						break;
+					case app.touch.item[0]:  
+						app.touch.listItemCheck(dist,angle);
+						break;
+				}	
 			}
-			e.preventDefault();
-			
+			start_pt = null;
+			end_pt = null;
 		},
 
 		ctrCheck: function(angle){
 	        if(angle >= -135 && angle <= -45){
 	        	this.ctr.removeClass('down').addClass('up');
-	        	this.scroll.removeClass('pa-bottom');
+	        	setTimeout(function(){
+	        		app.touch.scroll.removeClass('pa-bottom');
+	        	},300)
 	        }
 	        if(angle >= 45 && angle < 135){
 	        	this.ctr.removeClass('up').addClass('down');
