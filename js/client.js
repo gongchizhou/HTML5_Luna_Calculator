@@ -8,7 +8,6 @@ app.client = (function(){
 		},
 
 		onload: function(){
-			alert(app.isTouch);
 			if(!app.isTouch){
 				this.width = 320;
 				this.height = 568;

@@ -6,7 +6,7 @@ var app = {
 	sw: $('.switch-plus'),
 	done: $('.done'),
 	del: $('.del'),
-	isTouch: ('on touch start' in window),
+	isTouch: ('ontouchstart' in window),
 	initEvent: function(){
 		this.nums.on('click',function(){
 			var operator = $(this).text();
