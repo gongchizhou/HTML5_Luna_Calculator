@@ -46,14 +46,18 @@ app.touch = (function(){
 		},
 
 		startEvt:function(e){
+			//e.preventDefault(); 
 			if(!e.touches || e.touches.length == 1){
 				start_pt = app.touch.getPos(e);
 				startTime = Date.now();
+				console.log("1");
 			}
 		},
 
 		moveEvt: function(e){
+			e.preventDefault(); 
 			if(!e.touches) return;
+			console.log("2");
 		},
 
 		endEvt: function(e){
