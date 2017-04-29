@@ -150,10 +150,9 @@
             padding-left: 6px;
             opacity: 0.6; }
         .panel .list-scroll .lists li .check {
-          float: right;
-          transform: translateY(4.66667vh);
-          -webkit-transform: translateY(4.66667vh);
-          -moz-transform: translateY(4.66667vh);
+          position: absolute;
+          top: 50%;
+          right: 20px;
           margin-top: -9px;
           line-height: 1; }
           .panel .list-scroll .lists li .check input {
