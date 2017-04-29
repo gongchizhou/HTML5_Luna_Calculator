@@ -107,6 +107,8 @@ app.touch = (function(){
 						$(target).trigger(end);
 					}
 				}
+
+				e.preventDefault();
 			},
 
 			endEvt: function(e){
@@ -137,6 +139,7 @@ app.touch = (function(){
 			this.ctr.on(start,this.startEvt);
 			this.ctr.on(move,this.moveEvt);
 			this.ctr.on(end,this.endEvt);
+			this.scroll.on(move,this.moveEvt);
 		}
 	}
 })()

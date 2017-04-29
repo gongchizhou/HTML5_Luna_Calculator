@@ -20,6 +20,7 @@ app.list_item = (function(){
 			setTimeout(function(){
 				
 				$(target).remove();
+				console.log(target);
 				app.list.deleteItem(target);
 			},300);
 		},

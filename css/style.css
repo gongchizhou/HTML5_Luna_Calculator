@@ -130,6 +130,7 @@
       background-color: black; }
       .panel .list-scroll .lists li {
         position: relative;
+        height: 9.33333vh;
         line-height: 9.33333vh;
         padding: 0 20px;
         background-color: black;
@@ -268,6 +269,9 @@ html, body {
 
 html {
   -webkit-tap-highlight-color: transparent; }
+
+ul {
+  list-style: none; }
 
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }

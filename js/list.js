@@ -4,7 +4,6 @@ app.list = (function(){
 	return {
 		collection: $('.lists'),
 		items:new Array(),
-		count:$('.item').length,
 
 		save: function(){
 			var v = JSON.stringify(this.items); 
@@ -32,6 +31,7 @@ app.list = (function(){
 			if(this.items){
 				for(var i=0;i<this.items.length;i++){
 					app.list_item.render(this.items[i]);
+					this.count = $('.item').length;
 				};
 			}
 		} 
