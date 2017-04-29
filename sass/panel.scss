@@ -68,7 +68,7 @@
 				position: relative;
 				line-height: $list-height*2/3;
 				padding: 0 20px;
-				overflow: hidden;
+				background-color: black;
 				border-bottom: 1px solid rgba(255,255,255,0.1);
 				.res{
 					float: left;
@@ -100,6 +100,16 @@
 					input[checked="true"] + div{
 						box-shadow: none;
 					}
+				}
+				.remove{
+					position: absolute;
+					top: 0;
+					right: -$list-height*2/3;
+					display: block;
+					width: $list-height*2/3;
+					height: $list-height*2/3;
+					font-weight: 200;
+					color: red;
 				}
 			}
 		}

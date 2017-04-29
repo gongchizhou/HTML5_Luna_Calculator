@@ -225,8 +225,7 @@ app.calculator = (function(){
 				var item = {
 					title:this.title.val(),
 					value:this.resultView,
-					used:false,
-					using:false
+					id:app.list.count
 				};
 
 				app.list.addItem(item);
@@ -299,7 +298,8 @@ app.calculator = (function(){
 				}else{
 					var lastChar = this.currentView.charAt(this.currentView.length - 1);
 					var preChar = this.currentView.charAt(this.currentView.length - 2);
-					var isLastNum = this.isLastNum(this.currentView.toString());
+
+					//var isLastNum = this.isLastNum(this.currentView.toString());
 					if(lastChar == "."){
 						this.ptExist = false;
 					}
@@ -309,7 +309,8 @@ app.calculator = (function(){
 					}
 					
 					if(this.isLastOps(lastChar)){
-						this.ptExist = true;
+						var ptIndex = this.resultView.indexOf('.');
+						(ptIndex == -1)?(this.ptExist = false):(this.ptExist = true);
 						app.list_item.setCheckBoxShow(false);
 					}
 
@@ -319,9 +320,6 @@ app.calculator = (function(){
 					this.setView(this.currentView); 
 					this.setNum(this.resultView);	
 
-					if(this.currentView.indexOf(".") == -1){
-						this.ptExist = false;
-					}	
 				}
 				if(this.resultView.length == 0){
 					this.clearView();

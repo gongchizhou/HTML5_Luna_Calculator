@@ -28,6 +28,7 @@
 		}
 		.cal-output{
 			display: flex;
+			display: -webkit-flex;
 			align-items: center;
 			justify-content: center;
 			height: 66%;//76px
@@ -37,6 +38,7 @@
 		.cal-input{
 			height: 34%;//48px;
 			display: flex;
+			display: -webkit-flex;
 			align-items: center;
 			justify-content: center;
 			//background-color: $bg-color;

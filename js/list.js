@@ -4,6 +4,7 @@ app.list = (function(){
 	return {
 		collection: $('.lists'),
 		items:new Array(),
+		count:$('.item').length,
 
 		save: function(){
 			var v = JSON.stringify(this.items); 
@@ -13,13 +14,16 @@ app.list = (function(){
 		addItem: function(item){
 			this.items.push(item);
 			app.list_item.render(item);
+			this.count++;
 			this.save();
 		},
 
 		deleteItem: function(item){
 			var index = this.items.indexOf(item);
 			this.items.splice(index,1);
+			this.count>1 && this.count--;
 			this.save();
+			
 		},
 
 		init: function(){

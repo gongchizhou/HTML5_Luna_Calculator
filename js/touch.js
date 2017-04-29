@@ -11,14 +11,14 @@ app.touch = (function(){
 	}
 
 	var swipeHold = 10;
-	var sliderHold = 60;
+	var sliderHold = 100;
 	var swipeTime = 500;
 	var start_pt,end_pt;
 	var startTime,endTime;
+	var target;
 
 	return {
 		ctr:$('.controls'),
-		item:$('.item'),
 		scroll:$('.list-scroll'),
 		getPos: function(e){
 			if(e.touches && e.touches[0]){
@@ -42,39 +42,33 @@ app.touch = (function(){
 		},
 
 		getAngle: function(p1,p2){
-	        var dx = p1.x - p2.x;
-	        var dy = p2.y - p1.y;    
-	        return angle = Math.atan2(dy , dx) * 180 / Math.PI;
+			if(p1 && p2){
+		        var dx = p1.x - p2.x;
+		        var dy = p2.y - p1.y;    
+		        return angle = Math.atan2(dy , dx) * 180 / Math.PI;
+	    	}
 		},
 
 		startEvt:function(e){
 			if(!e.touches || e.touches.length == 1){
 				start_pt = app.touch.getPos(e);
 				startTime = Date.now();
+				target = e.target;
 			}
 		},
 
 		moveEvt: function(e){
 			end_pt = app.touch.getPos(e);
 			e.preventDefault(); 
-			//if(!e.touches) return;	
 		},
 
 		endEvt: function(e){
 			endTime = Date.now();
 			var dist = app.touch.getDist(start_pt,end_pt);
-
 			if(dist > swipeHold && endTime - startTime < swipeTime){
-
 				var angle = app.touch.getAngle(start_pt,end_pt);
-				switch(this){
-					case app.touch.ctr[0]: 
-						app.touch.ctrCheck(angle);
-						break;
-					case app.touch.item[0]:  
-						app.touch.listItemCheck(dist,angle);
-						break;
-				}	
+				
+				app.touch.ctrCheck(angle);
 			}
 			start_pt = null;
 			end_pt = null;
@@ -93,21 +87,56 @@ app.touch = (function(){
 	        }
 		},
 
-		listItemCheck: function(dist,angle){
-			if(angle < 45 && angle > -45){
-				app.item.swipeLeft();
-				dist > sliderHold && app.item.sliderLeft();
+		itemAction: {
+			moveEvt: function(e){
+				end_pt = app.touch.getPos(e);
+				
+				if(start_pt){
+					var offset = start_pt.x - end_pt.x;
+					var angle = app.touch.getAngle(start_pt,end_pt);
+
+					if(angle < 45 && angle > -45){
+						$(target).css('transform','translateX('+ -offset/2 +'px)');
+					}
+
+					var left = app.wrap[0].offsetLeft - app.wrap.width()/2;
+					var top = $('.panel')[0].offsetTop + app.wrap[0].offsetTop - app.wrap.height()/2;
+					var bottom = top + $('.item:last-child')[0].offsetTop + $('.item:last-child').height() - 1;
+					
+					if(end_pt.x <= left || end_pt.y <= top || end_pt.y >= bottom){
+						$(target).trigger(end);
+					}
+				}
+			},
+
+			endEvt: function(e){
+				var dist = app.touch.getDist(start_pt,end_pt);
+				var angle = app.touch.getAngle(start_pt,end_pt);
+
+				if(dist > sliderHold){
+					if(angle < 45 && angle > -45){
+						app.list_item.swipeLeft(target);
+					}
+				}else{
+					$(target).animate({transform:'translateX(0px)'},300);
+				}
+				
+				start_pt = null;
+				end_pt = null;
 			}
+
+		},
+
+		listInit: function(item){
+			item.on(start,this.startEvt);
+			item.on(move,this.itemAction.moveEvt);
+			item.on(end,this.itemAction.endEvt);
 		},
 
 		init: function(){
 			this.ctr.on(start,this.startEvt);
 			this.ctr.on(move,this.moveEvt);
 			this.ctr.on(end,this.endEvt);
-
-			this.item.on(start,this.startEvt);
-			this.item.on(move,this.moveEvt);
-			this.item.on(end,this.endEvt);
 		}
 	}
 })()

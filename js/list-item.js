@@ -1,23 +1,27 @@
 app.list_item = (function(){
 	return {
 		render: function(item){
-			this.el = $('<li class="item">\
+			this.el = $('<li class="item" id=" '+item.id+' ">\
 							<div class="res">'+item.value+'</div>\
 							<span class=" '+(item.title?'':'none')+' ">'+'('+item.title+')'+'</span>\
 							<label class="check">\
 								<input type="checkbox" class="checkbox" checked="false">\
 								<div></div>\
 							</label>\
+							<div class="remove">delete<div>\
 						</li>');
 			this.el.appendTo(app.list.collection);
 			this.initEvent(item);
-		},
-		swipeLeft: function(){
-			/*   */
+			app.touch.listInit(this.el);
 		},
 
-		sliderLeft: function(){
-			app.list.deleteItem();
+		swipeLeft: function(target){
+			$(target).animate({transform:'translateX(-400px)'},300);
+			setTimeout(function(){
+				
+				$(target).remove();
+				app.list.deleteItem(target);
+			},300);
 		},
 
 		setCheckBoxShow: function(args){
