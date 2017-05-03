@@ -17,8 +17,15 @@ app.list = (function(){
 			this.save();
 		},
 
-		deleteItem: function(item){
-			var index = this.items.indexOf(item);
+		deleteItem: function(target){
+			var id = $(target).parent().attr('id');
+			console.log(id);
+			for(var i = 0;i < this.items.length;i++){
+				if(id == this.items[i].id){
+					var index = this.items.indexOf(this.items[i]);
+				}
+			}
+			console.log(index);
 			this.items.splice(index,1);
 			this.count>1 && this.count--;
 			this.save();

@@ -35,6 +35,9 @@
 				cursor: pointer;
 				@include font(24px);
 			}
+			.darken{
+				background-color: rgba(0,0,0,0.1);
+			}
 			&:nth-child(1){
 				background-color: #00091a;
 			}
@@ -66,50 +69,58 @@
 			background-color: black;
 			li{
 				position: relative;
-				height: $list-height*2/3;
 				line-height: $list-height*2/3;
-				padding: 0 20px;
-				background-color: black;
 				border-bottom: 1px solid rgba(255,255,255,0.1);
-				.res{
-					float: left;
-					@include font();
-					text-align: left;
-					& + span{
+				.inner{
+					position: relative;
+					padding: 0 20px;
+					height: $list-height*2/3;
+					background-color: black;
+					z-index: 1;
+					.res{
+						float: left;
 						@include font();
-						padding-left:6px;
-						opacity: 0.6;
+						text-align: left;
+						& + span{
+							@include font();
+							padding-left:6px;
+							opacity: 0.6;
+						}
 					}
-				}
-				.check{
-					position: absolute;
-					top: 50%;
-					right: 20px;
-					margin-top: -9px;
-					line-height: 1;
-					input{
-						display: none;
+					.none{
+						display:none;
 					}
-					input + div{
-						display: inline-block;
-						width: 18px;
-						height: 18px;
-						box-shadow: 0 0 0 1px white inset;
-						border-radius: 50%;
-					}
-					input[checked="true"] + div{
-						box-shadow: none;
+					.check{
+						position: absolute;
+						top: 50%;
+						right: 20px;
+						margin-top: -9px;
+						line-height: 1;
+						input{
+							display: none;
+						}
+						input + div{
+							display: inline-block;
+							width: 18px;
+							height: 18px;
+							box-shadow: 0 0 0 1px white inset;
+							border-radius: 50%;
+						}
+						input[checked="true"] + div{
+							box-shadow: none;
+						}
 					}
 				}
 				.remove{
 					position: absolute;
 					top: 0;
-					right: -$list-height*2/3;
+					right: 0;
 					display: block;
 					width: $list-height*2/3;
 					height: $list-height*2/3;
 					font-weight: 200;
 					color: red;
+					z-index: 0;
 				}
 			}
 		}

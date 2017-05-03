@@ -14,11 +14,7 @@ app.client = (function(){
 				$('body').addClass('pc');
 
 				this.renderClient();
-			}else{
-				this.width = window.innerWidth;
-				this.height = window.innerHeight;
-			}
-			//this.renderClient();	
+			}	
 		},
 
 		renderClient: function(){

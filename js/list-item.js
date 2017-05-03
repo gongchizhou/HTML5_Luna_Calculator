@@ -2,12 +2,14 @@ app.list_item = (function(){
 	return {
 		render: function(item){
 			this.el = $('<li class="item" id=" '+item.id+' ">\
-							<div class="res">'+item.value+'</div>\
-							<span class=" '+(item.title?'':'none')+' ">'+'('+item.title+')'+'</span>\
-							<label class="check">\
-								<input type="checkbox" class="checkbox" checked="false">\
-								<div></div>\
-							</label>\
+							<div class="inner">\
+								<div class="res">'+item.value+'</div>\
+								<span class=" '+(item.title?'':'none')+' ">'+'('+item.title+')'+'</span>\
+								<label class="check">\
+									<input type="checkbox" class="checkbox" checked="false">\
+									<div></div>\
+								</label>\
+							</div>\
 							<div class="remove">delete<div>\
 						</li>');
 			this.el.appendTo(app.list.collection);
@@ -16,11 +18,10 @@ app.list_item = (function(){
 		},
 
 		swipeLeft: function(target){
-			$(target).animate({transform:'translateX(-400px)'},300);
+			$(target).parent().animate({transform:'translateX(-400px)'},300);
+			
 			setTimeout(function(){
-				
-				$(target).remove();
-				console.log(target);
+				$(target).parent().remove();
 				app.list.deleteItem(target);
 			},300);
 		},
@@ -73,7 +74,7 @@ app.list_item = (function(){
 					var li = $(this).parent().parent();
 					li.css('backgroundColor',ac.color);
 					setTimeout(function(){
-						li.css('backgroundColor','transparent');
+						li.css('backgroundColor','black');
 					},100);
 				    
 					ac.resultView = ac.resultView + ac.currentView;

@@ -97,6 +97,7 @@ app.touch = (function(){
 
 					if(angle < 45 && angle > -45){
 						$(target).css('transform','translateX('+ -offset/2 +'px)');
+						//e.preventDefault();
 					}
 
 					var left = app.wrap[0].offsetLeft - app.wrap.width()/2;
@@ -107,8 +108,6 @@ app.touch = (function(){
 						$(target).trigger(end);
 					}
 				}
-
-				e.preventDefault();
 			},
 
 			endEvt: function(e){
@@ -129,6 +128,7 @@ app.touch = (function(){
 
 		},
 
+
 		listInit: function(item){
 			item.on(start,this.startEvt);
 			item.on(move,this.itemAction.moveEvt);
@@ -139,7 +139,7 @@ app.touch = (function(){
 			this.ctr.on(start,this.startEvt);
 			this.ctr.on(move,this.moveEvt);
 			this.ctr.on(end,this.endEvt);
-			this.scroll.on(move,this.moveEvt);
+
 		}
 	}
 })()

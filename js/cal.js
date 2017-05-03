@@ -225,7 +225,7 @@ app.calculator = (function(){
 				var item = {
 					title:this.title.val(),
 					value:this.resultView,
-					id:app.list.count
+					id:Math.random()
 				};
 
 				app.list.addItem(item);

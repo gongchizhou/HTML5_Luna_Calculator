@@ -107,6 +107,8 @@
         color: white;
         text-align: center;
         font-weight: 200; }
+      .panel .controls .row .darken {
+        background-color: rgba(0, 0, 0, 0.1); }
       .panel .controls .row:nth-child(1) {
         background-color: #00091a; }
       .panel .controls .row:nth-child(2) {
@@ -130,50 +132,56 @@
       background-color: black; }
       .panel .list-scroll .lists li {
         position: relative;
-        height: 9.33333vh;
         line-height: 9.33333vh;
-        padding: 0 20px;
-        background-color: black;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
-        .panel .list-scroll .lists li .res {
-          float: left;
-          font-size: 16px;
-          color: white;
-          text-align: center;
-          font-weight: 200;
-          text-align: left; }
-          .panel .list-scroll .lists li .res + span {
+        .panel .list-scroll .lists li .inner {
+          position: relative;
+          padding: 0 20px;
+          height: 9.33333vh;
+          background-color: black;
+          z-index: 1; }
+          .panel .list-scroll .lists li .inner .res {
+            float: left;
             font-size: 16px;
             color: white;
             text-align: center;
             font-weight: 200;
-            padding-left: 6px;
-            opacity: 0.6; }
-        .panel .list-scroll .lists li .check {
-          position: absolute;
-          top: 50%;
-          right: 20px;
-          margin-top: -9px;
-          line-height: 1; }
-          .panel .list-scroll .lists li .check input {
+            text-align: left; }
+            .panel .list-scroll .lists li .inner .res + span {
+              font-size: 16px;
+              color: white;
+              text-align: center;
+              font-weight: 200;
+              padding-left: 6px;
+              opacity: 0.6; }
+          .panel .list-scroll .lists li .inner .none {
             display: none; }
-          .panel .list-scroll .lists li .check input + div {
-            display: inline-block;
-            width: 18px;
-            height: 18px;
-            box-shadow: 0 0 0 1px white inset;
-            border-radius: 50%; }
-          .panel .list-scroll .lists li .check input[checked="true"] + div {
-            box-shadow: none; }
+          .panel .list-scroll .lists li .inner .check {
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            margin-top: -9px;
+            line-height: 1; }
+            .panel .list-scroll .lists li .inner .check input {
+              display: none; }
+            .panel .list-scroll .lists li .inner .check input + div {
+              display: inline-block;
+              width: 18px;
+              height: 18px;
+              box-shadow: 0 0 0 1px white inset;
+              border-radius: 50%; }
+            .panel .list-scroll .lists li .inner .check input[checked="true"] + div {
+              box-shadow: none; }
         .panel .list-scroll .lists li .remove {
           position: absolute;
           top: 0;
-          right: -9.33333vh;
+          right: 0;
           display: block;
           width: 9.33333vh;
           height: 9.33333vh;
           font-weight: 200;
-          color: red; }
+          color: red;
+          z-index: 0; }
 
 .trans, .panel .controls.down, .panel .controls.up {
   transition: all 0.3s ease-in-out;
@@ -287,8 +295,5 @@ body {
   -webkit-transform: translate(-50%, -50%);
   -moz-transform: translate(-50%, -50%);
   background-color: #00020f; }
-
-.none {
-  display: none; }
 
 /*# sourceMappingURL=style.css.map */

@@ -1,6 +1,7 @@
 var app = {
 	wrap:$('#wrap'),
 	nums: $('.num'),
+	rate: $('.rate'),
 	options: $('.ops'),
 	pt: $('.point'),
 	sw: $('.switch-plus'),
