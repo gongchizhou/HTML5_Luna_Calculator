@@ -53,7 +53,7 @@ app.list_item = (function(){
 		initEvent: function(item){
 			this.el.find('.checkbox').on('change',function(){ 
 				var ac = app.calculator;
-				ac.currentView = item.value;//$(this).parent().prev().prev().text();
+				ac.currentView = item.value;
 
 				var lastChar = ac.resultView.charAt(ac.resultView.length-1);
 				if(item.value == 0 && lastChar == "÷"){
@@ -62,7 +62,7 @@ app.list_item = (function(){
 				}
 
 				if($(this).attr('checked') == 'false'){
-					var checkbox = $(this).parent().parent().siblings().find('.checkbox');
+					var checkbox = $(this).parent().parent().parent().siblings().find('.checkbox');
 					app.list_item.setDisabled(checkbox);
 					$(this).attr('checked',true);
 

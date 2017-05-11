@@ -10,7 +10,6 @@ app.calculator = (function(){
 		ctr: $('.controls'),
 
 		currentView: "",
-		//preView: "",
 		resultView: "",
  		ptExist: false,
 		hasResult: false,

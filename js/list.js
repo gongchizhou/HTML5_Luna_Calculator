@@ -19,7 +19,7 @@ app.list = (function(){
 
 		deleteItem: function(target){
 			var id = $(target).parent().attr('id');
-			console.log(id);
+			
 			for(var i = 0;i < this.items.length;i++){
 				if(id == this.items[i].id){
 					var index = this.items.indexOf(this.items[i]);

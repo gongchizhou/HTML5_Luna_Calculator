@@ -53,7 +53,7 @@ app.touch = (function(){
 			if(!e.touches || e.touches.length == 1){
 				start_pt = app.touch.getPos(e);
 				startTime = Date.now();
-				target = e.target;
+				target = this;
 			}
 		},
 
@@ -104,7 +104,7 @@ app.touch = (function(){
 					var top = $('.panel')[0].offsetTop + app.wrap[0].offsetTop - app.wrap.height()/2;
 					var bottom = top + $('.item:last-child')[0].offsetTop + $('.item:last-child').height() - 1;
 					
-					if(end_pt.x <= left || end_pt.y <= top || end_pt.y >= bottom){
+					if(end_pt.x <= app.list.left || end_pt.y <= app.list.top || end_pt.y >= app.list.bottom){
 						$(target).trigger(end);
 					}
 				}
@@ -113,10 +113,11 @@ app.touch = (function(){
 			endEvt: function(e){
 				var dist = app.touch.getDist(start_pt,end_pt);
 				var angle = app.touch.getAngle(start_pt,end_pt);
-
+				console.log(target);
 				if(dist > sliderHold){
 					if(angle < 45 && angle > -45){
 						app.list_item.swipeLeft(target);
+						
 					}
 				}else{
 					$(target).animate({transform:'translateX(0px)'},300);
@@ -128,11 +129,10 @@ app.touch = (function(){
 
 		},
 
-
 		listInit: function(item){
-			item.on(start,this.startEvt);
-			item.on(move,this.itemAction.moveEvt);
-			item.on(end,this.itemAction.endEvt);
+			item.find('.inner').on(start,this.startEvt);
+			item.find('.inner').on(move,this.itemAction.moveEvt);
+			item.find('.inner').on(end,this.itemAction.endEvt);
 		},
 
 		init: function(){
