@@ -1,5 +1,8 @@
 $bg-color:#00020f;
 $list-height:14vh;
+@media (min-width:960px){
+	$list-height:80px;
+}
 @mixin font($size:16px){
 	font-size: $size;
 	color: white;
@@ -11,7 +14,6 @@ $list-height:14vh;
 @import "panel.scss";
 @import "animate.scss";
 //@import "media.scss";
-
 *{
 	margin: 0;
 	padding: 0;
@@ -36,10 +38,10 @@ body{
 	position: absolute;
     width: 100%;
     height: 100vh;
-    top: 50%;
+    top: 0;
     left: 50%;
-    transform: translate(-50%,-50%);
-	-webkit-transform: translate(-50%,-50%);
-	-moz-transform: translate(-50%,-50%);
+    transform: translateX(-50%);
+	-webkit-transform: translateX(-50%);
+	-moz-transform: translateX(-50%);
     background-color: $bg-color;
 }

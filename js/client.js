@@ -20,6 +20,8 @@ app.client = (function(){
 		renderClient: function(){
 			app.wrap.width(this.width);
 			app.wrap.height(this.height);
+			//$('.row div').height('80px')
+			//$('.header').height('168px');
 		}
 	}
 })()
