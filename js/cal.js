@@ -168,7 +168,7 @@ app.calculator = (function(){
 
 		ptClick: function(){
 			var lastChar = this.currentView.charAt(this.currentView.length-1);
-			if(this.ptExist || lastChar == "÷" || lastChar == "%" || (this.hasResult && this.input == "")){
+			if(this.ptExist || lastChar == "÷" || lastChar == "%" || (this.hasResult && this.input.text() == "")){
 				this.shake();
 				return;
 			}
