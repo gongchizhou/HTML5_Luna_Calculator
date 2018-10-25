@@ -1,3 +1,8 @@
+.bling, .header .cal .cal-input p:before {
+  animation: bling 1s linear 0s infinite;
+  -webkit-animation: bling 1s linear 0s infinite;
+  -moz-animation: bling 1s linear 0s infinite; }
+
 .header {
   height: 30vh; }
   .header.move {
@@ -76,21 +81,24 @@
 .pc .header {
   height: 30%; }
 
+.trans, .panel .controls.down, .panel .controls.up {
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out; }
+
 .panel {
-  height: 70vh;
   position: relative;
   overflow: hidden;
   background-color: black;
   z-index: 100; }
   .panel .controls {
     width: 100%;
-    height: 100%;
     position: absolute;
     left: 0;
     bottom: 0;
     z-index: 100; }
     .panel .controls.down {
-      margin-bottom: -100%; }
+      margin-bottom: -56vh; }
     .panel .controls.up {
       margin-bottom: 0; }
     .panel .controls.move {
@@ -101,15 +109,12 @@
       -webkit-transition: all 0.3s ease-in;
       -moz-transition: all 0.3s ease-in; }
     .panel .controls .row {
-      overflow: hidden;
-      height: 20%; }
+      overflow: hidden; }
       .panel .controls .row div {
         float: left;
-        display: flex;
-        justify-content: center;
-        align-items: center;
         width: 25%;
-        height: 100%;
+        height: 14vh;
+        line-height: 14vh;
         cursor: pointer;
         font-size: 24px;
         color: white;
@@ -128,25 +133,24 @@
       .panel .controls .row:nth-child(5) {
         background-color: #163351; }
   .panel .list-scroll {
-    height: 100%;
+    height: 70vh;
     margin-right: -22px;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
     box-sizing: border-box; }
     .panel .list-scroll.pa-bottom {
-      padding-bottom: 25%; }
+      padding-bottom: 14vh; }
     .panel .list-scroll .lists {
       margin-right: 22px;
       background-color: black; }
       .panel .list-scroll .lists li {
         position: relative;
-        height: 9.33333vh;
         line-height: 9.33333vh;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
         .panel .list-scroll .lists li .inner {
           position: relative;
           padding: 0 20px;
-          height: 100%;
+          height: 9.33333vh;
           background-color: black;
           z-index: 1; }
           .panel .list-scroll .lists li .inner .res {
@@ -187,18 +191,13 @@
           right: 0;
           display: block;
           width: 9.33333vh;
-          height: 100%;
+          height: 9.33333vh;
           font-weight: 200;
           color: red;
           z-index: 0; }
 
-.pc .panel {
+.pc .list-scroll {
   height: 70%; }
-
-.trans, .panel .controls.down, .panel .controls.up {
-  transition: all 0.3s ease-in-out;
-  -webkit-transition: all 0.3s ease-in-out;
-  -moz-transition: all 0.3s ease-in-out; }
 
 .bling, .header .cal .cal-input p:before {
   animation: bling 1s linear 0s infinite;
@@ -301,11 +300,11 @@ body {
   position: absolute;
   width: 100%;
   height: 100vh;
-  top: 50%;
+  top: 0;
   left: 50%;
   transform: translateX(-50%);
-  -webkit-transform: translate(-50%, -50%);
-  -moz-transform: translate(-50%, -50%);
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
   background-color: #00020f; }
 
-/*# sourceMappingURL=style.css.map */
+/*# sourceMappingURL=index.css.map */

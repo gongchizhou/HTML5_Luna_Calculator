@@ -1,16 +1,18 @@
 .panel{
+	height: 5*$list-height;
 	position: relative;
 	overflow: hidden;
 	background-color: black;
 	z-index: 100;
 	.controls{
 		width: 100%;
+		height: 100%;
 		position: absolute;
 		left: 0;
 		bottom: 0;
 		z-index: 100;
 		&.down{
-			margin-bottom: -4*$list-height;
+			margin-bottom: -100%;
 			@extend .trans;
 		}
 		&.up{
@@ -27,11 +29,14 @@
 		}
 		.row{
 			overflow: hidden;
+			height: 20%;
 			div{
 				float: left;
+				display: flex;
+				justify-content: center;
+				align-items: center;
 				width: 25%;
-				height: $list-height;
-				line-height: $list-height;
+				height: 100%;
 				cursor: pointer;
 				@include font(24px);
 			}
@@ -56,25 +61,26 @@
 		}
 	}
 	.list-scroll{
-		height: 5*$list-height;
+		height: 100%;
 		margin-right: -22px;
 		overflow-y: scroll;
 		-webkit-overflow-scrolling: touch;	
 	    box-sizing: border-box;
 		&.pa-bottom{
-			padding-bottom: $list-height;
+			padding-bottom: 25%;
 		}
 		.lists{
 			margin-right: 22px;
 			background-color: black;
 			li{
 				position: relative;
+				height: $list-height*2/3;
 				line-height: $list-height*2/3;
 				border-bottom: 1px solid rgba(255,255,255,0.1);
 				.inner{
 					position: relative;
 					padding: 0 20px;
-					height: $list-height*2/3;
+					height: 100%;
 					background-color: black;
 					z-index: 1;
 					.res{
@@ -117,7 +123,7 @@
 					right: 0;
 					display: block;
 					width: $list-height*2/3;
-					height: $list-height*2/3;
+					height: 100%;
 					font-weight: 200;
 					color: red;
 					z-index: 0;
@@ -125,4 +131,8 @@
 			}
 		}
 	}
+}
+
+.pc .panel{
+	height: 70%;
 }
